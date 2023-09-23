@@ -23,5 +23,5 @@ def log_message(logger: Logger, message: str):
 
 
 if __name__ == "__main__":
-    log_message(ConsoleLogger(), "This is a console log.")
-    log_message(FileLogger(), "This is a file log.")
+    log_message(ConsoleLogger(), "A console log.")
+    log_message(FileLogger(), "A file log.")

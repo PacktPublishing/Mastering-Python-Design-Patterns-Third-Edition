@@ -12,5 +12,6 @@ class Car:
         print("Car started")
 
 
-my_car = Car()
-my_car.start()
+if __name__ == "__main__":
+    my_car = Car()
+    my_car.start()

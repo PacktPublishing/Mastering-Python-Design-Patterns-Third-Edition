@@ -13,14 +13,17 @@ class PayPal(PaymentMethod):
         print(f"Processing PayPal payment for {amount}")
 
 
-print("- Choose the amount to pay")
-amount = input("Enter the amount: ")
-print("- Choose your payment method")
-payment_method = input("Enter 'CC' for Credit Card or 'PP' for PayPal: ")
+if __name__ == "__main__":
+    print("- Choose the amount to pay")
+    msg = "Which amount? "
+    amount = input(msg)
+    print("- Choose your payment method")
+    msg = "'CC' for Credit Card or 'PP' for PayPal: "
+    payment_method = input(msg)
 
-if payment_method.lower() == 'cc':
-    CreditCard().process_payment(amount)
-elif payment_method.lower() == 'pp':
-    PayPal().process_payment(amount)
-else:
-    print("Invalid response")
+    if payment_method.lower() == 'cc':
+        CreditCard().process_payment(amount)
+    elif payment_method.lower() == 'pp':
+        PayPal().process_payment(amount)
+    else:
+        print("Invalid response")
