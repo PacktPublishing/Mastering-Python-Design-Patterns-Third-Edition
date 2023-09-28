@@ -5,12 +5,14 @@ class PaymentMethod:
 
 class CreditCard(PaymentMethod):
     def process_payment(self, amount):
-        print(f"Processing credit card payment for {amount}")
+        msg = f"Processing credit card payment: {amount}"
+        print(msg)
 
 
 class PayPal(PaymentMethod):
     def process_payment(self, amount):
-        print(f"Processing PayPal payment for {amount}")
+        msg = f"Processing PayPal payment: {amount}"
+        print(msg)
 
 
 if __name__ == "__main__":
