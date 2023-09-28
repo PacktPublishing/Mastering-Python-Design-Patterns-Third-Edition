@@ -44,10 +44,10 @@ def extract_data_from(filepath):
 
 
 def main():
-    sqlite_factory = extract_data_from('data/person.sq3')
+    sqlite_factory = extract_data_from('person.sq3')
     print()
 
-    json_factory = extract_data_from('data/movies.json')
+    json_factory = extract_data_from('movies.json')
     json_data = json_factory.parsed_data
     print(f'Found: {len(json_data)} movies')
     for movie in json_data:
@@ -63,7 +63,7 @@ def main():
             print(f"Genre: {genre}")
         print()
 
-    xml_factory = extract_data_from('data/person.xml')
+    xml_factory = extract_data_from('person.xml')
     xml_data = xml_factory.parsed_data
     liars = xml_data.findall(f".//person[lastName='Liar']")
     print(f'found: {len(liars)} persons')
