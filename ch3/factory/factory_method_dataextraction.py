@@ -4,7 +4,7 @@ import xml.etree.ElementTree as etree
 
 class JSONDataExtractor:
 
-    def __init__(self, filepath):
+    def __init__(self, filepath: str):
         self.data = dict()
         with open(filepath, mode='r', encoding='utf-8') as f:
             self.data = json.load(f)
@@ -16,7 +16,7 @@ class JSONDataExtractor:
 
 class XMLDataExtractor:
 
-    def __init__(self, filepath):
+    def __init__(self, filepath: str):
         self.tree =  etree.parse(filepath)
 
     @property
@@ -24,7 +24,7 @@ class XMLDataExtractor:
         return self.tree
 
 
-def dataextraction_factory(filepath):
+def dataextraction_factory(filepath: str):
     if filepath.endswith('json'):
         extractor = JSONDataExtractor
     elif filepath.endswith('xml'):
@@ -34,7 +34,7 @@ def dataextraction_factory(filepath):
     return extractor(filepath)
 
 
-def extract_data_from(filepath):
+def extract_data_from(filepath: str):
     factory_obj = None
     try:
         factory_obj = dataextraction_factory(filepath)

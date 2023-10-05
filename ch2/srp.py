@@ -1,5 +1,5 @@
 class Report:
-    def __init__(self, content):
+    def __init__(self, content: str):
         self.content = content
 
     def generate(self):
@@ -7,10 +7,10 @@ class Report:
 
 
 class ReportSaver:
-    def __init__(self, report):
+    def __init__(self, report: Report):
         self.report = report
 
-    def save_to_file(self, filename):
+    def save_to_file(self, filename: str):
         with open(filename, 'w') as file:
             file.write(self.report.content)
 

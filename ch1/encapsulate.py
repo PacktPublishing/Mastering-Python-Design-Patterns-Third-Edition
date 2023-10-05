@@ -1,16 +1,16 @@
 class PaymentMethod:
-    def process_payment(self, amount):
+    def process_payment(self, amount: int):
         pass
 
 
 class CreditCard(PaymentMethod):
-    def process_payment(self, amount):
+    def process_payment(self, amount: int):
         msg = f"Processing credit card payment: {amount}"
         print(msg)
 
 
 class PayPal(PaymentMethod):
-    def process_payment(self, amount):
+    def process_payment(self, amount: int):
         msg = f"Processing PayPal payment: {amount}"
         print(msg)
 

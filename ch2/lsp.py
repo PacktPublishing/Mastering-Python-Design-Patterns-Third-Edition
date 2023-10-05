@@ -20,5 +20,5 @@ if __name__ == "__main__":
     try:
         pgn.fly()
     except Exception as e:
-        print(f"Case of Penguin object: {e}")
+        print(f"Error: {e}")
 

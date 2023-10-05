@@ -7,7 +7,7 @@ class Shape:
 
 
 class Rectangle(Shape):
-    def __init__(self, width, height):
+    def __init__(self, width: int, height: int):
         self.width = width
         self.height = height
 
@@ -16,7 +16,7 @@ class Rectangle(Shape):
 
 
 class Circle(Shape):
-    def __init__(self, radius):
+    def __init__(self, radius: int):
         self.radius = radius
 
     def area(self):
