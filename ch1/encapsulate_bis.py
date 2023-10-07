@@ -1,5 +1,5 @@
 class Circle:
-    def __init__(self, radius):
+    def __init__(self, radius: int):
         self._radius = radius
 
     @property
@@ -7,7 +7,7 @@ class Circle:
         return self._radius
 
     @radius.setter
-    def radius(self, value):
+    def radius(self, value: int):
         if value < 0:
             raise ValueError("Radius cannot be negative!")
         self._radius = value
@@ -15,8 +15,7 @@ class Circle:
 
 if __name__ == "__main__":
     circle = Circle(10)
-    print(circle.radius)
+    print(f"Initial radius: {circle.radius}")
 
-    # Now, we decided to update the radius
     circle.radius = 15
-    print(circle.radius)
+    print(f"New radius: {circle.radius}")

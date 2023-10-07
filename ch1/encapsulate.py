@@ -1,31 +1,27 @@
 class PaymentMethod:
-    def process_payment(self, amount: int):
+    def __init__(self, amount: int):
+        self.amount = amount
+
+    def process_payment(self):
         pass
 
 
 class CreditCard(PaymentMethod):
-    def process_payment(self, amount: int):
-        msg = f"Processing credit card payment: {amount}"
+    def process_payment(self):
+        msg = f"Credit card payment for: {self.amount}"
         print(msg)
 
 
 class PayPal(PaymentMethod):
-    def process_payment(self, amount: int):
-        msg = f"Processing PayPal payment: {amount}"
+    def process_payment(self):
+        msg = f"PayPal payment for: {self.amount}"
         print(msg)
 
 
 if __name__ == "__main__":
-    print("- Choose the amount to pay")
-    msg = "Which amount? "
-    amount = input(msg)
-    print("- Choose your payment method")
-    msg = "'CC' for Credit Card or 'PP' for PayPal: "
-    payment_method = input(msg)
-
-    if payment_method.lower() == 'cc':
-        CreditCard().process_payment(amount)
-    elif payment_method.lower() == 'pp':
-        PayPal().process_payment(amount)
-    else:
-        print("Invalid response")
+    test_values = [(25, "cc"), (15, "pp")]
+    for amount, payment_method in test_values:
+        if payment_method == "cc":
+            CreditCard(amount).process_payment()
+        elif payment_method == "pp":
+            PayPal(amount).process_payment()
