@@ -1,13 +1,14 @@
 import math
+from typing import Protocol
 
 
-class Shape:
+class Shape(Protocol):
     def area(self):
-        pass
+        ...
 
 
-class Rectangle(Shape):
-    def __init__(self, width: int, height: int):
+class Rectangle:
+    def __init__(self, width: float, height: float):
         self.width = width
         self.height = height
 
@@ -15,23 +16,23 @@ class Rectangle(Shape):
         return self.width * self.height
 
 
-class Circle(Shape):
-    def __init__(self, radius: int):
+class Circle:
+    def __init__(self, radius: float):
         self.radius = radius
 
     def area(self):
         return math.pi * (self.radius**2)
 
 
-def calculate_area(shape):
+def calculate_area(shape: Shape) -> float:
     return shape.area()
 
 
 if __name__ == "__main__":
     rect = Rectangle(12, 8)
-    print("Rectangle area")
-    print(calculate_area(rect))
+    a = calculate_area(rect)
+    print(f"Rectangle area: {a}")
 
-    print("Circle area")
-    circ = Circle(11)
-    print(calculate_area(circ))
+    circ = Circle(6.5)
+    a = calculate_area(circ)
+    print(f"Circle area: {a:.2f}")

@@ -8,13 +8,13 @@ class PaymentMethod:
 
 class CreditCard(PaymentMethod):
     def process_payment(self):
-        msg = f"Credit card payment for: {self.amount}"
+        msg = f"Credit card payment: {self.amount}"
         print(msg)
 
 
 class PayPal(PaymentMethod):
     def process_payment(self):
-        msg = f"PayPal payment for: {self.amount}"
+        msg = f"PayPal payment: {self.amount}"
         print(msg)
 
 
