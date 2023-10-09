@@ -1,13 +1,12 @@
 import json
 import xml.etree.ElementTree as etree
 import os
-import sys
 
 
 class JSONDataExtractor:
     def __init__(self, filepath: str):
         self.data = {}
-        with open(filepath, mode="r", encoding="utf-8") as f:
+        with open(filepath) as f:
             self.data = json.load(f)
 
     @property
@@ -31,7 +30,7 @@ def dataextraction_factory(filepath: str):
     elif ext == "xml":
         extractor = XMLDataExtractor
     else:
-        raise ValueError(f"Cannot extract data from .{ext} file")
+        raise ValueError(f"Cannot extract data")
     return extractor(filepath)
 
 
@@ -40,10 +39,11 @@ def extract(case: str):
 
     if case == "json":
         try:
-            factory = dataextraction_factory(os.path.join(dirname, "movies.json"))
-            parsed_data = factory.parsed_data
+            path = os.path.join(dirname, "movies.json")
+            factory = dataextraction_factory(path)
+            data = factory.parsed_data
 
-            for idx, movie in enumerate(parsed_data, start=1):
+            for idx, movie in enumerate(data, start=1):
                 print(f"{idx}. {movie['title']}")
             year = movie["year"]
             if year:
@@ -58,25 +58,23 @@ def extract(case: str):
             print(e)
     elif case == "xml":
         try:
-            factory = dataextraction_factory(os.path.join(dirname, "person.xml"))
-            parsed_data = factory.parsed_data
+            path = os.path.join(dirname, "person.xml")
+            factory = dataextraction_factory(path)
+            data = factory.parsed_data
 
-            selection = parsed_data.findall(f".//person[lastName='Liar']")
-            for idx, item in enumerate(selection, start=1):
+            search_xpath = ".//person[lastName='Liar']"
+            items = data.findall(search_xpath)
+            for idx, item in enumerate(items, start=1):
                 firstname = item.find("firstName").text
                 lastname = item.find("lastName").text
                 print(f"{idx}. {firstname} {lastname}")
                 for p in item.find("phoneNumbers"):
-                    print(f"   phone number ({p.attrib['type']}): {p.text}")
+                    number_type = p.attrib["type"]
+                    number_val = p.text
+                    phone = f"{number_type}: {number_val}"
+                    print(f"   {phone}")
         except ValueError as e:
             print(e)
-    elif case == "sq3":
-        try:
-            factory = dataextraction_factory(os.path.join(dirname, "person.sq3"))
-        except ValueError as e:
-            print(e)
-    else:
-        print("Not handled; try 'json'!")
 
 
 if __name__ == "__main__":
@@ -85,6 +83,3 @@ if __name__ == "__main__":
     print()
     print("*** XML case ***")
     extract(case="xml")
-    print()
-    print("*** SQ3 case ***")
-    extract(case="sq3")

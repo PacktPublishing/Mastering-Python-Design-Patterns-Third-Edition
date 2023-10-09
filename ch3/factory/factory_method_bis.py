@@ -17,9 +17,10 @@ def extract(factory: Callable):
     dirname = os.path.split(os.path.abspath(__file__))[0]
 
     if factory == extract_json:
-        parsed_data = factory(os.path.join(dirname, "movies.json"))
+        path = os.path.join(dirname, "movies.json")
+        data = factory(path)
 
-        for idx, movie in enumerate(parsed_data, start=1):
+        for idx, movie in enumerate(data, start=1):
             print(f"{idx}. {movie['title']}")
         year = movie["year"]
         if year:
@@ -31,15 +32,20 @@ def extract(factory: Callable):
         if genre:
             print(f"   Genre: {genre}")
     elif factory == extract_xml:
-        parsed_data = factory(os.path.join(dirname, "person.xml"))
+        path = os.path.join(dirname, "person.xml")
+        data = factory(path)
 
-        selection = parsed_data.findall(f".//person[lastName='Liar']")
-        for idx, item in enumerate(selection, start=1):
+        search_xpath = ".//person[lastName='Liar']"
+        items = data.findall(search_xpath)
+        for idx, item in enumerate(items, start=1):
             firstname = item.find("firstName").text
             lastname = item.find("lastName").text
             print(f"{idx}. {firstname} {lastname}")
             for p in item.find("phoneNumbers"):
-                print(f"   phone number ({p.attrib['type']}): {p.text}")
+                number_type = p.attrib["type"]
+                number_val = p.text
+                phone = f"{number_type}: {number_val}"
+                print(f"   {phone}")
 
 
 if __name__ == "__main__":
