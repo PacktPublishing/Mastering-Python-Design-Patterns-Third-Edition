@@ -1,7 +1,6 @@
-from typing import Protocol, runtime_checkable
+from typing import Protocol
 
 
-@runtime_checkable
 class MessageSender(Protocol):
     def send(self, message: str):
         ...

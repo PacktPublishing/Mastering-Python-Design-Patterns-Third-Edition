@@ -10,8 +10,8 @@
       <postalCode>10021</postalCode> 
     </address> 
     <phoneNumbers> 
-      <phoneNumber type="home">212 555-1234</phoneNumber> 
-      <phoneNumber type="fax">646 555-4567</phoneNumber> 
+      <number type="home">212 555-1234</number> 
+      <number type="fax">646 555-4567</number> 
     </phoneNumbers> 
     <gender> 
       <type>male</type> 
@@ -28,7 +28,7 @@
       <postalCode>10021</postalCode> 
     </address> 
     <phoneNumbers> 
-      <phoneNumber type="home">212 555-1234</phoneNumber> 
+      <number type="home">212 555-1234</number> 
     </phoneNumbers> 
     <gender> 
       <type>male</type> 
@@ -45,8 +45,8 @@
       <postalCode>10021</postalCode> 
     </address> 
     <phoneNumbers> 
-      <phoneNumber type="home">212 555-1234</phoneNumber> 
-      <phoneNumber type="mobile">001 452-8819</phoneNumber> 
+      <number type="home">212 555-1234</number> 
+      <number type="mobile">001 452-8819</number> 
     </phoneNumbers> 
     <gender> 
       <type>female</type> 
