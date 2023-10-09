@@ -41,39 +41,33 @@ def extract(selected_factory):
     if selected_factory == "json":
         try:
             factory = dataextraction_factory(os.path.join(dirname, "movies.json"))
+            parsed_data = factory.parsed_data
 
-            json_data = factory.parsed_data
-            print(f"Found: {len(json_data)} movies")
-            for movie in json_data:
-                print(f"- Title: {movie['title']}")
+            for idx, movie in enumerate(parsed_data, start=1):
+                print(f"{idx}. {movie['title']}")
             year = movie["year"]
             if year:
-                print(f"  Year: {year}")
+                print(f"   Year: {year}")
             director = movie["director"]
             if director:
-                print(f"  Director: {director}")
+                print(f"   Director: {director}")
             genre = movie["genre"]
             if genre:
-                print(f"  Genre: {genre}")
+                print(f"   Genre: {genre}")
         except ValueError as e:
             print(e)
     elif selected_factory == "xml":
         try:
             factory = dataextraction_factory(os.path.join(dirname, "person.xml"))
+            parsed_data = factory.parsed_data
 
-            xml_data = factory.parsed_data
-            liars = xml_data.findall(f".//person[lastName='Liar']")
-            print(f"found: {len(liars)} persons")
-            for liar in liars:
-                firstname = liar.find("firstName").text
-                lastname = liar.find("lastName").text
-                print(f"- {lastname}")
-                print(f"  first name: {firstname}")
-                print(f"  last name: {lastname}")
-                [
-                    print(f"  phone number ({p.attrib['type']}):", p.text)
-                    for p in liar.find("phoneNumbers")
-                ]
+            selection = parsed_data.findall(f".//person[lastName='Liar']")
+            for idx, item in enumerate(selection, start=1):
+                firstname = item.find("firstName").text
+                lastname = item.find("lastName").text
+                print(f"{idx}. {firstname} {lastname}")
+                for p in item.find("phoneNumbers"):
+                    print(f"   phone number ({p.attrib['type']}): {p.text}")
         except ValueError as e:
             print(e)
     elif selected_factory == "sq3":
@@ -82,13 +76,15 @@ def extract(selected_factory):
         except ValueError as e:
             print(e)
     else:
-        print("Input invalid")
+        print("Not handled; try 'json'!")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) <= 1:
-        print("Retry! Example usage: python ch3/factory_method.py json")
-        sys.exit(1)
-
-    args = sys.argv[1:]
-    extract(selected_factory=args[0])
+    print("*** JSON case ***")
+    extract(selected_factory="json")
+    print()
+    print("*** XML case ***")
+    extract(selected_factory="xml")
+    print()
+    print("*** SQ3 case ***")
+    extract(selected_factory="sq3")
