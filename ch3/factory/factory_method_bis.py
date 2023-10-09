@@ -1,7 +1,7 @@
 import json
 import xml.etree.ElementTree as etree
 import os
-import sys
+from typing import Callable
 
 
 def extract_json(filepath: str):
@@ -13,11 +13,10 @@ def extract_xml(filepath: str):
     return etree.parse(filepath)
 
 
-def extract(selected_factory):
+def extract(factory: Callable):
     dirname = os.path.split(os.path.abspath(__file__))[0]
 
-    if selected_factory == "json":
-        factory = extract_json
+    if factory == extract_json:
         parsed_data = factory(os.path.join(dirname, "movies.json"))
 
         for idx, movie in enumerate(parsed_data, start=1):
@@ -31,8 +30,7 @@ def extract(selected_factory):
         genre = movie["genre"]
         if genre:
             print(f"   Genre: {genre}")
-    elif selected_factory == "xml":
-        factory = extract_xml
+    elif factory == extract_xml:
         parsed_data = factory(os.path.join(dirname, "person.xml"))
 
         selection = parsed_data.findall(f".//person[lastName='Liar']")
@@ -46,7 +44,7 @@ def extract(selected_factory):
 
 if __name__ == "__main__":
     print("*** JSON case ***")
-    extract(selected_factory="json")
+    extract(factory=extract_json)
     print()
     print("*** XML case ***")
-    extract(selected_factory="xml")
+    extract(factory=extract_xml)

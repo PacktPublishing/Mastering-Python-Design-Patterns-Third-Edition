@@ -35,10 +35,10 @@ def dataextraction_factory(filepath: str):
     return extractor(filepath)
 
 
-def extract(selected_factory):
+def extract(case: str):
     dirname = os.path.split(os.path.abspath(__file__))[0]
 
-    if selected_factory == "json":
+    if case == "json":
         try:
             factory = dataextraction_factory(os.path.join(dirname, "movies.json"))
             parsed_data = factory.parsed_data
@@ -56,7 +56,7 @@ def extract(selected_factory):
                 print(f"   Genre: {genre}")
         except ValueError as e:
             print(e)
-    elif selected_factory == "xml":
+    elif case == "xml":
         try:
             factory = dataextraction_factory(os.path.join(dirname, "person.xml"))
             parsed_data = factory.parsed_data
@@ -70,7 +70,7 @@ def extract(selected_factory):
                     print(f"   phone number ({p.attrib['type']}): {p.text}")
         except ValueError as e:
             print(e)
-    elif selected_factory == "sq3":
+    elif case == "sq3":
         try:
             factory = dataextraction_factory(os.path.join(dirname, "person.sq3"))
         except ValueError as e:
@@ -81,10 +81,10 @@ def extract(selected_factory):
 
 if __name__ == "__main__":
     print("*** JSON case ***")
-    extract(selected_factory="json")
+    extract(case="json")
     print()
     print("*** XML case ***")
-    extract(selected_factory="xml")
+    extract(case="xml")
     print()
     print("*** SQ3 case ***")
-    extract(selected_factory="sq3")
+    extract(case="sq3")
