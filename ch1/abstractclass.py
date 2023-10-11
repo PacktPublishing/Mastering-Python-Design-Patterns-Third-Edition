@@ -9,4 +9,8 @@ class MyInterface(ABC):
 
 class MyClass(MyInterface):
     def do_something(self, param: str):
-        print(f"Doing something: {param}")
+        print(f"Doing something with: '{param}'")
+
+
+if __name__ == "__main__":
+    MyClass().do_something("some param")

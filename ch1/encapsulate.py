@@ -19,9 +19,6 @@ class PayPal(PaymentMethod):
 
 
 if __name__ == "__main__":
-    test_values = [(25, "cc"), (15, "pp")]
-    for amount, payment_method in test_values:
-        if payment_method == "cc":
-            CreditCard(amount).process_payment()
-        elif payment_method == "pp":
-            PayPal(amount).process_payment()
+    payments = [CreditCard(100), PayPal(200)]
+    for payment in payments:
+        payment.process_payment()
