@@ -1,6 +1,3 @@
-
-# Frog game
-
 class Frog:
     def __init__(self, name):
         self.name = name
@@ -10,15 +7,17 @@ class Frog:
 
     def interact_with(self, obstacle):
         act = obstacle.action()
-        msg = f'{self} the Frog encounters {obstacle} and {act}!'
+        msg = f"{self} the Frog encounters {obstacle} and {act}!"
         print(msg)
+
 
 class Bug:
     def __str__(self):
-        return 'a bug'
+        return "a bug"
 
     def action(self):
-        return 'eats it'
+        return "eats it"
+
 
 class FrogWorld:
     def __init__(self, name):
@@ -26,7 +25,7 @@ class FrogWorld:
         self.player_name = name
 
     def __str__(self):
-        return '\n\n\t------ Frog World -------'
+        return "\n\n\t------ Frog World -------"
 
     def make_character(self):
         return Frog(self.player_name)
@@ -34,8 +33,6 @@ class FrogWorld:
     def make_obstacle(self):
         return Bug()
 
-
-# Wizard game
 
 class Wizard:
     def __init__(self, name):
@@ -46,15 +43,17 @@ class Wizard:
 
     def interact_with(self, obstacle):
         act = obstacle.action()
-        msg = f'{self} the Wizard battles against {obstacle} and {act}!'
+        msg = f"{self} the Wizard battles against {obstacle} and {act}!"
         print(msg)
+
 
 class Ork:
     def __str__(self):
-        return 'an evil ork'
+        return "an evil ork"
 
     def action(self):
-        return 'kills it'
+        return "kills it"
+
 
 class WizardWorld:
     def __init__(self, name):
@@ -62,13 +61,14 @@ class WizardWorld:
         self.player_name = name
 
     def __str__(self):
-        return '\n\n\t------ Wizard World -------'
+        return "\n\n\t------ Wizard World -------"
 
     def make_character(self):
         return Wizard(self.player_name)
 
     def make_obstacle(self):
         return Ork()
+
 
 # Game environment
 class GameEnvironment:
@@ -79,14 +79,16 @@ class GameEnvironment:
     def play(self):
         self.hero.interact_with(self.obstacle)
 
+
 def validate_age(name):
     try:
-        age = input(f'Welcome {name}. How old are you? ')
+        age = input(f"Welcome {name}. How old are you? ")
         age = int(age)
     except ValueError as err:
         print(f"Age {age} is invalid, please try again...")
         return (False, age)
     return (True, age)
+
 
 def main():
     name = input("Hello. What's your name? ")
@@ -98,5 +100,5 @@ def main():
     environment.play()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

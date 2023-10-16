@@ -10,7 +10,7 @@ class CarPool:
         self._available = []
         self._in_use = []
 
-    def acquire_car(self):
+    def acquire_car(self) -> Car:
         if len(self._available) == 0:
             new_car = Car("BMW", "M3")
             self._available.append(new_car)
@@ -19,7 +19,7 @@ class CarPool:
         car.in_use = True
         return car
 
-    def release_car(self, car: Car):
+    def release_car(self, car: Car) -> None:
         car.in_use = False
         self._in_use.remove(car)
         self._available.append(car)

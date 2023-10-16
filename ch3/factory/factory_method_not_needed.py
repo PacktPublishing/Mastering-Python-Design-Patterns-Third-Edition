@@ -23,24 +23,13 @@ class XMLDataExtractor:
         return self.tree
 
 
-def extract_factory(filepath: str):
-    ext = filepath.split(".")[-1]
-    if ext == "json":
-        return JSONDataExtractor(filepath)
-    elif ext == "xml":
-        return XMLDataExtractor(filepath)
-    else:
-        raise ValueError(f"Cannot extract data")
-
-
 def extract(case: str):
     pathname = os.path.abspath(__file__)
     dir_path = os.path.split(pathname)[0]
 
     if case == "json":
         path = os.path.join(dir_path, "movies.json")
-        factory = extract_factory(path)
-        data = factory.parsed_data
+        data = JSONDataExtractor(path).parsed_data
 
         for movie in data:
             print(f"- {movie['title']}")
@@ -52,8 +41,7 @@ def extract(case: str):
             print(f"   Genre: {genre}")
     elif case == "xml":
         path = os.path.join(dir_path, "person.xml")
-        factory = extract_factory(path)
-        data = factory.parsed_data
+        data = XMLDataExtractor(path).parsed_data
 
         search_xpath = ".//person[lastName='Liar']"
         items = data.findall(search_xpath)
