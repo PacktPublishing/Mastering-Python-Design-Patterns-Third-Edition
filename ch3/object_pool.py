@@ -27,8 +27,12 @@ class CarPool:
 
 if __name__ == "__main__":
     pool = CarPool()
-    car1 = pool.acquire_car()
-    print(f"Car 1 in use: {car1.in_use}")
+    car_name = "Car 1"
 
+    print(f"Acquire {car_name}")
+    car1 = pool.acquire_car()
+    print(f"{car_name} in use: {car1.in_use}")
+
+    print(f"Now release {car_name}")
     pool.release_car(car1)
-    print(f"Car 1 in use: {car1.in_use}")
+    print(f"{car_name} in use: {car1.in_use}")

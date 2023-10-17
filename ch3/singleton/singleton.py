@@ -21,26 +21,23 @@ class URLFetcher(metaclass=SingletonType):
             if response.code == 200:
                 page_content = response.read()
                 with open("content.html", "a") as f:
-                    f.write(page_content + "\n")
+                    f.write(str(page_content))
                 self.urls.append(url)
 
 
 def main():
 
     my_urls = [
-        "http://www.voidspace.org.uk",
-        "http://google.com",
         "http://python.org",
+        "https://planetpython.org/",
+        "https://www.djangoproject.com/",
     ]
 
     print(URLFetcher() is URLFetcher())
 
     fetcher = URLFetcher()
     for url in my_urls:
-        try:
-            fetcher.fetch(url)
-        except Exception:
-            pass
+        fetcher.fetch(url)
 
     print(f"Done URLs: {fetcher.urls}")
 
