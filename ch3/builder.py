@@ -37,9 +37,8 @@ class MargaritaBuilder:
     def __init__(self):
         self.pizza = Pizza("margarita")
         self.progress = PizzaProgress.queued
-        self.baking_time = (
-            5  # in seconds for the sake of the example
-        )
+        # in seconds for the sake of the example
+        self.baking_time = 5
 
     def prepare_dough(self):
         self.progress = PizzaProgress.preparation
@@ -78,9 +77,8 @@ class CreamyBaconBuilder:
     def __init__(self):
         self.pizza = Pizza("creamy bacon")
         self.progress = PizzaProgress.queued
-        self.baking_time = (
-            7  # in seconds for the sake of the example
-        )
+        # in seconds for the sake of the example
+        self.baking_time = 7
 
     def prepare_dough(self):
         self.progress = PizzaProgress.preparation
