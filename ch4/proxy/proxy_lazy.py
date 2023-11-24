@@ -2,11 +2,14 @@ class LazyProperty:
     def __init__(self, method):
         self.method = method
         self.method_name = method.__name__
+        # print(f"function overriden: {self.method}")
+        # print(f"function's name: {self.method_name}")
 
     def __get__(self, obj, cls):
         if not obj:
             return None
         value = self.method(obj)
+        # print(f'value {value}')
         setattr(obj, self.method_name, value)
         return value
 
@@ -19,7 +22,8 @@ class Test:
 
     @LazyProperty
     def resource(self):
-        print(f"initializing self._resource which is: {self._resource}")
+        print("initializing self._resource...")
+        print(f"... which is: {self._resource}")
         self._resource = tuple(range(5))  # expensive
         return self._resource
 

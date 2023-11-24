@@ -9,7 +9,7 @@ class Club:
         return f"the club {self.name}"
 
     def organize_event(self):
-        return "hires an artist to perform for the people"
+        return "hires an artist to perform"
 
 
 class Adapter:
@@ -22,14 +22,24 @@ class Adapter:
 
 
 def main():
-    objects = [Club("Jazz Cafe"), Musician("Roy Ayers"), Dancer("Shane Sparks")]
+    objects = [
+        Club("Jazz Cafe"),
+        Musician("Roy Ayers"),
+        Dancer("Shane Sparks"),
+    ]
 
     for obj in objects:
-        if hasattr(obj, "play") or hasattr(obj, "dance"):
+        if hasattr(obj, "play") or hasattr(
+            obj, "dance"
+        ):
             if hasattr(obj, "play"):
-                adapted_methods = dict(organize_event=obj.play)
+                adapted_methods = dict(
+                    organize_event=obj.play
+                )
             elif hasattr(obj, "dance"):
-                adapted_methods = dict(organize_event=obj.dance)
+                adapted_methods = dict(
+                    organize_event=obj.dance
+                )
 
             # referencing the adapted object here
             obj = Adapter(obj, adapted_methods)

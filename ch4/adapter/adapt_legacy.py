@@ -1,22 +1,23 @@
-# Legacy payment system
 class OldPaymentSystem:
     def __init__(self, currency):
         self.currency = currency
 
     def make_payment(self, amount):
-        print(f"Making payment of {amount} {self.currency} using the old system.")
+        print(
+            f"[OLD] Pay {amount} {self.currency}"
+        )
 
 
-# New payment gateway
 class NewPaymentGateway:
     def __init__(self, currency):
         self.currency = currency
 
     def execute_payment(self, amount):
-        print(f"Executing payment of {amount} {self.currency} using the new gateway.")
+        print(
+            f"Execute payment of {amount} {self.currency}"
+        )
 
 
-# Adapter
 class PaymentAdapter:
     def __init__(self, system):
         self.system = system
@@ -25,9 +26,15 @@ class PaymentAdapter:
         self.system.execute_payment(amount)
 
 
-if __name__ == "__main__":
+def main():
     old_system = OldPaymentSystem("euro")
+    print(old_system)
     new_system = NewPaymentGateway("euro")
+    print(new_system)
 
     adapter = PaymentAdapter(new_system)
     adapter.make_payment(100)
+
+
+if __name__ == "__main__":
+    main()

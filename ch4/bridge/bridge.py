@@ -1,8 +1,16 @@
-
-
-import abc
-import urllib.parse
+import os
 import urllib.request
+from typing import Protocol
+
+
+class ResourceContentFetcher(Protocol):
+    """
+    Define the interface (Implementor) for implementation
+    classes that help fetch content.
+    """
+
+    def fetch(self, path: str) -> str:
+        ...
 
 
 class ResourceContent:
@@ -11,63 +19,62 @@ class ResourceContent:
     Maintain a reference to an object which represents the Implementor.
     """
 
-    def __init__(self, imp):
+    def __init__(
+        self, imp: ResourceContentFetcher
+    ):
         self._imp = imp
 
-    def show_content(self, path):
-        self._imp.fetch(path)
+    def get_content(self, path):
+        return self._imp.fetch(path)
 
 
-class ResourceContentFetcher(metaclass=abc.ABCMeta):
-    """
-    Define the interface (Implementor) for implementation classes that help fetch content.
-    """
-    
-    @abc.abstractmethod
-    def fetch(path):
-        pass
-        
-
-class URLFetcher(ResourceContentFetcher):
+class URLFetcher:
     """
     Implement the Implementor interface and define its concrete
     implementation.
     """
-    
+
     def fetch(self, path):
-        # path is an URL
+        res = ""
         req = urllib.request.Request(path)
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(
+            req
+        ) as response:
             if response.code == 200:
-                the_page = response.read()
-                print(the_page)
-                        
-                
-class LocalFileFetcher(ResourceContentFetcher):
+                res = response.read()
+        return res
+
+
+class LocalFileFetcher:
     """
     Implement the Implementor interface and define its concrete
     implementation.
     """
 
     def fetch(self, path):
-        # path is the filepath to a text file
         with open(path) as f:
-            print(f.read())
-        
-       
+            res = f.read()
+        return res
+
+
 def main():
     url_fetcher = URLFetcher()
-    iface = ResourceContent(url_fetcher)
-    iface.show_content('http://python.org')
+    rc = ResourceContent(url_fetcher)
+    res = rc.get_content("http://python.org")
+    print(
+        f"Fetched content with {len(res)} characters"
+    )
 
-    print('===================')
-    
     localfs_fetcher = LocalFileFetcher()
-    iface = ResourceContent(localfs_fetcher)
-    iface.show_content('file.txt')
+    rc = ResourceContent(localfs_fetcher)
+    pathname = os.path.abspath(__file__)
+    dir_path = os.path.split(pathname)[0]
+    path = os.path.join(dir_path, "file.txt")
+    res = rc.get_content(path)
+    print(
+        f"Fetched content with {len(res)} characters"
+    )
 
-    
+
 if __name__ == "__main__":
     main()
-
-    
