@@ -11,7 +11,7 @@ class ReportSaver:
         self.report: Report = report
 
     def save_to_file(self, filename: str):
-        with open(filename, 'w') as file:
+        with open(filename, "w") as file:
             file.write(self.report.content)
 
 
@@ -21,5 +21,5 @@ if __name__ == "__main__":
 
     report.generate()
 
-    report_saver:ReportSaver = ReportSaver(report)
+    report_saver: ReportSaver = ReportSaver(report)
     report_saver.save_to_file("report.txt")
