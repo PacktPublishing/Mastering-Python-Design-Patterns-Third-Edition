@@ -3,7 +3,7 @@ from typing import Protocol
 
 
 class Shape(Protocol):
-    def area(self):
+    def area(self) -> float:
         ...
 
 
