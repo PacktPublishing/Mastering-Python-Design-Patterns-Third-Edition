@@ -1,10 +1,11 @@
 import json
-import os
 import xml.etree.ElementTree as ET
+
+from pathlib import Path
 
 
 class JSONDataExtractor:
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: Path):
         self.data = {}
         with open(filepath) as f:
             self.data = json.load(f)
@@ -15,7 +16,7 @@ class JSONDataExtractor:
 
 
 class XMLDataExtractor:
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: Path):
         self.tree = ET.parse(filepath)
 
     @property
@@ -24,11 +25,11 @@ class XMLDataExtractor:
 
 
 def extract(case: str):
-    pathname = os.path.abspath(__file__)
-    dir_path = os.path.split(pathname)[0]
+    pathname = Path(__file__)
+    dir_path = pathname.parent
 
     if case == "json":
-        path = os.path.join(dir_path, "movies.json")
+        path = dir_path / Path("movies.json")
         data = JSONDataExtractor(path).parsed_data
 
         for movie in data:
@@ -40,7 +41,7 @@ def extract(case: str):
         if genre:
             print(f"   Genre: {genre}")
     elif case == "xml":
-        path = os.path.join(dir_path, "person.xml")
+        path = dir_path / Path("person.xml")
         data = XMLDataExtractor(path).parsed_data
 
         search_xpath = ".//person[lastName='Liar']"
