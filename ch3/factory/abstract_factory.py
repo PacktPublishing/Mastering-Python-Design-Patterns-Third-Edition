@@ -81,11 +81,12 @@ class GameEnvironment:
 
 
 def validate_age(name):
+    age = None
     try:
-        age = input(
+        age_input = input(
             f"Welcome {name}. How old are you? "
         )
-        age = int(age)
+        age = int(age_input)
     except ValueError:
         print(
             f"Age {age} is invalid, please try again..."
