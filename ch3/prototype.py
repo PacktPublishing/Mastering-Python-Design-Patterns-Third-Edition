@@ -44,9 +44,7 @@ class Prototype:
     def clone(self, identifier: int, **attrs) -> object:
         found = self.registry.get(identifier)
         if not found:
-            raise ValueError(
-                f"Incorrect object identifier: {identifier}"
-            )
+            raise ValueError(f"Incorrect object identifier: {identifier}")
         obj = copy.deepcopy(found)
         for key in attrs:
             setattr(obj, key, attrs[key])

@@ -27,7 +27,6 @@ class URLFetcher(metaclass=SingletonType):
 
 
 def main():
-
     my_urls = [
         "http://python.org",
         "https://planetpython.org/",
