@@ -1,10 +1,10 @@
 import json
-import os
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 
 class JSONDataExtractor:
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: Path):
         self.data = {}
         with open(filepath) as f:
             self.data = json.load(f)
@@ -15,7 +15,7 @@ class JSONDataExtractor:
 
 
 class XMLDataExtractor:
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: Path):
         self.tree = ET.parse(filepath)
 
     @property
@@ -23,22 +23,21 @@ class XMLDataExtractor:
         return self.tree
 
 
-def extract_factory(filepath: str):
-    ext = filepath.split(".")[-1]
+def extract_factory(filepath: Path):
+    ext = filepath.name.split(".")[-1]
     if ext == "json":
         return JSONDataExtractor(filepath)
     elif ext == "xml":
         return XMLDataExtractor(filepath)
     else:
-        raise ValueError(f"Cannot extract data")
+        raise ValueError("Cannot extract data")
 
 
 def extract(case: str):
-    pathname = os.path.abspath(__file__)
-    dir_path = os.path.split(pathname)[0]
+    dir_path = Path(__file__).parent
 
     if case == "json":
-        path = os.path.join(dir_path, "movies.json")
+        path = dir_path / Path("movies.json")
         factory = extract_factory(path)
         data = factory.parsed_data
 
@@ -51,7 +50,7 @@ def extract(case: str):
         if genre:
             print(f"   Genre: {genre}")
     elif case == "xml":
-        path = os.path.join(dir_path, "person.xml")
+        path = dir_path / Path("person.xml")
         factory = extract_factory(path)
         data = factory.parsed_data
 

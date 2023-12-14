@@ -1,6 +1,6 @@
 class PaymentMethod:
     def __init__(self, amount: int):
-        self.amount = amount
+        self.amount: int = amount
 
     def process_payment(self):
         pass

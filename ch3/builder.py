@@ -1,9 +1,7 @@
 from enum import Enum
 import time
 
-PizzaProgress = Enum(
-    "PizzaProgress", "queued preparation baking ready"
-)
+PizzaProgress = Enum("PizzaProgress", "queued preparation baking ready")
 PizzaDough = Enum("PizzaDough", "thin thick")
 PizzaSauce = Enum("PizzaSauce", "tomato creme_fraiche")
 PizzaTopping = Enum(
@@ -26,9 +24,7 @@ class Pizza:
 
     def prepare_dough(self, dough):
         self.dough = dough
-        print(
-            f"preparing the {self.dough.name} dough of your {self}..."
-        )
+        print(f"preparing the {self.dough.name} dough of your {self}...")
         time.sleep(STEP_DELAY)
         print(f"done with the {self.dough.name} dough")
 
@@ -56,18 +52,14 @@ class MargaritaBuilder:
             PizzaTopping.double_mozzarella,
             PizzaTopping.oregano,
         )
-        print(
-            f"adding the topping ({topping_desc}) to your margarita"
-        )
+        print(f"adding the topping ({topping_desc}) to your margarita")
         self.pizza.topping.append([t for t in topping_items])
         time.sleep(STEP_DELAY)
         print(f"done with the topping ({topping_desc})")
 
     def bake(self):
         self.progress = PizzaProgress.baking
-        print(
-            f"baking your margarita for {self.baking_time} seconds"
-        )
+        print(f"baking your margarita for {self.baking_time} seconds")
         time.sleep(self.baking_time)
         self.progress = PizzaProgress.ready
         print("your margarita is ready")
@@ -85,9 +77,7 @@ class CreamyBaconBuilder:
         self.pizza.prepare_dough(PizzaDough.thick)
 
     def add_sauce(self):
-        print(
-            "adding the crème fraîche sauce to your creamy bacon"
-        )
+        print("adding the crème fraîche sauce to your creamy bacon")
         self.pizza.sauce = PizzaSauce.creme_fraiche
         time.sleep(STEP_DELAY)
         print("done with the crème fraîche sauce")
@@ -102,18 +92,14 @@ class CreamyBaconBuilder:
             PizzaTopping.red_onion,
             PizzaTopping.oregano,
         )
-        print(
-            f"adding the topping ({topping_desc}) to your creamy bacon"
-        )
+        print(f"adding the topping ({topping_desc}) to your creamy bacon")
         self.pizza.topping.append([t for t in topping_items])
         time.sleep(STEP_DELAY)
         print(f"done with the topping ({topping_desc})")
 
     def bake(self):
         self.progress = PizzaProgress.baking
-        print(
-            f"baking your creamy bacon for {self.baking_time} seconds"
-        )
+        print(f"baking your creamy bacon for {self.baking_time} seconds")
         time.sleep(self.baking_time)
         self.progress = PizzaProgress.ready
         print("your creamy bacon is ready")
@@ -145,7 +131,9 @@ def validate_style(builders):
         builder = builders[pizza_style]()
         valid_input = True
     except KeyError:
-        error_msg = "Sorry, only margarita (key m) and creamy bacon (key c) are available"
+        error_msg = (
+            "Sorry, only margarita (key m) and creamy bacon (key c) are available"
+        )
         print(error_msg)
         return (False, None)
     return (True, builder)

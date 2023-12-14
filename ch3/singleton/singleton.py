@@ -1,8 +1,9 @@
 import urllib.request
+from typing import Any, Dict
 
 
 class SingletonType(type):
-    _instances = {}
+    _instances: Dict[object, Any] = {}
 
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
@@ -26,7 +27,6 @@ class URLFetcher(metaclass=SingletonType):
 
 
 def main():
-
     my_urls = [
         "http://python.org",
         "https://planetpython.org/",

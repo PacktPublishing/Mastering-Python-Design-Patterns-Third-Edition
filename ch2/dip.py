@@ -13,13 +13,13 @@ class Email:
 
 class Notification:
     def __init__(self, sender: MessageSender):
-        self.sender = sender
+        self.sender: MessageSender = sender
 
     def send(self, message: str):
         self.sender.send(message)
 
 
 if __name__ == "__main__":
-    email = Email()
-    notif = Notification(sender=email)
+    email: Email = Email()
+    notif: Notification = Notification(sender=email)
     notif.send(message="This is the message.")

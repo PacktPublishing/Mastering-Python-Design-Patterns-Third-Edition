@@ -33,10 +33,10 @@ class SimplePrinter:
 
 
 if __name__ == "__main__":
-    all_in_one = AllInOnePrinter()
+    all_in_one: AllInOnePrinter = AllInOnePrinter()
     all_in_one.print_document()
     all_in_one.scan_document()
     all_in_one.fax_document()
 
-    simple = SimplePrinter()
+    simple: SimplePrinter = SimplePrinter()
     simple.print_document()

@@ -13,12 +13,11 @@ class Penguin(FlightlessBird):
 
 
 if __name__ == "__main__":
-    brd = Bird()
+    brd: Bird = Bird()
     brd.fly()
 
-    pgn = Penguin()
+    pgn: Bird = Penguin()
     try:
         pgn.fly()
     except Exception as e:
         print(f"Error: {e}")
-
