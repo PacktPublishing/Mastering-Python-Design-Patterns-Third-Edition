@@ -1,4 +1,4 @@
-class PaymentMethod:
+class PaymentBase:
     def __init__(self, amount: int):
         self.amount: int = amount
 
@@ -6,13 +6,13 @@ class PaymentMethod:
         pass
 
 
-class CreditCard(PaymentMethod):
+class CreditCard(PaymentBase):
     def process_payment(self):
         msg = f"Credit card payment: {self.amount}"
         print(msg)
 
 
-class PayPal(PaymentMethod):
+class PayPal(PaymentBase):
     def process_payment(self):
         msg = f"PayPal payment: {self.amount}"
         print(msg)
