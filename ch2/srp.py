@@ -16,10 +16,10 @@ class ReportSaver:
 
 
 if __name__ == "__main__":
-    report_content: str = "This is the content."
-    report: Report = Report(report_content)
+    report_content = "This is the content."
+    report = Report(report_content)
 
     report.generate()
 
-    report_saver: ReportSaver = ReportSaver(report)
+    report_saver = ReportSaver(report)
     report_saver.save_to_file("report.txt")

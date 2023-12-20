@@ -19,5 +19,3 @@ if __name__ == "__main__":
 
     circle.radius = 15
     print(f"New radius: {circle.radius}")
-
-    circle.radius = -1
