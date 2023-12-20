@@ -29,10 +29,10 @@ def calculate_area(shape: Shape) -> float:
 
 
 if __name__ == "__main__":
-    rect: Rectangle = Rectangle(12, 8)
-    rect_area: float = calculate_area(rect)
+    rect = Rectangle(12, 8)
+    rect_area = calculate_area(rect)
     print(f"Rectangle area: {rect_area}")
 
-    circ: Circle = Circle(6.5)
-    circ_area: float = calculate_area(circ)
+    circ = Circle(6.5)
+    circ_area = calculate_area(circ)
     print(f"Circle area: {circ_area:.2f}")

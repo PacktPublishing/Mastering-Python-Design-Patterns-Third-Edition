@@ -20,6 +20,6 @@ class Notification:
 
 
 if __name__ == "__main__":
-    email: Email = Email()
-    notif: Notification = Notification(sender=email)
+    email = Email()
+    notif = Notification(sender=email)
     notif.send(message="This is the message.")
