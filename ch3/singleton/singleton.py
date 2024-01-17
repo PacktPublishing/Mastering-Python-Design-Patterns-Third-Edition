@@ -1,5 +1,4 @@
 import urllib.request
-from typing import Any, Dict
 
 
 class SingletonType(type):
