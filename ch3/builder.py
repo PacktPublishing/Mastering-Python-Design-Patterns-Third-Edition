@@ -1,5 +1,5 @@
-from enum import Enum
 import time
+from enum import Enum
 
 PizzaProgress = Enum("PizzaProgress", "queued preparation baking ready")
 PizzaDough = Enum("PizzaDough", "thin thick")

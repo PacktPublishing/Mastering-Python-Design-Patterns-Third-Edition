@@ -32,11 +32,15 @@ class SimplePrinter:
         print("Simply Printing")
 
 
+def do_the_print(printer: Printer):
+    printer.print_document()
+
+
 if __name__ == "__main__":
     all_in_one = AllInOnePrinter()
-    all_in_one.print_document()
     all_in_one.scan_document()
     all_in_one.fax_document()
+    do_the_print(all_in_one)
 
     simple = SimplePrinter()
-    simple.print_document()
+    do_the_print(simple)
