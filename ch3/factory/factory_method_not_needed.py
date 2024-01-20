@@ -34,12 +34,12 @@ def extract(case: str):
 
         for movie in data:
             print(f"- {movie['title']}")
-        director = movie["director"]
-        if director:
-            print(f"   Director: {director}")
-        genre = movie["genre"]
-        if genre:
-            print(f"   Genre: {genre}")
+            director = movie["director"]
+            if director:
+                print(f"   Director: {director}")
+            genre = movie["genre"]
+            if genre:
+                print(f"   Genre: {genre}")
     elif case == "xml":
         path = dir_path / Path("person.xml")
         data = XMLDataExtractor(path).parsed_data
