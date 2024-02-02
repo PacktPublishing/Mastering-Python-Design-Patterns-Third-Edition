@@ -60,12 +60,6 @@ def main():
     weather_station.set_weather_data(25.5, 60, 1013.2)
     weather_station.set_weather_data(26.0, 58, 1012.8)
 
-    # # Unregister an observer
-    # weather_station.remove_observer(display2)
-    #
-    # # Simulate more weather data changes
-    # weather_station.set_weather_data(27.2, 55, 1012.5)
-
 
 if __name__ == "__main__":
     main()

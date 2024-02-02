@@ -1,3 +1,4 @@
+from abc import ABCMeta, abstractmethod
 from enum import Enum
 
 State = Enum(
@@ -18,7 +19,24 @@ class File:
     pass
 
 
-class FileServer:
+class Server(metaclass=ABCMeta):
+    @abstractmethod
+    def __init__(self):
+        pass
+
+    def __str__(self):
+        return self.name
+
+    @abstractmethod
+    def boot(self):
+        pass
+
+    @abstractmethod
+    def kill(self, restart=True):
+        pass
+
+
+class FileServer(Server):
     def __init__(self):
         """actions for initializing the file server"""
         self.name = "FileServer"
@@ -32,9 +50,7 @@ class FileServer:
     def kill(self, restart=True):
         """actions for killing the file server"""
         print(f"Killing {self}")
-        self.state = (
-            State.RESTART if restart else State.ZOMBIE
-        )
+        self.state = State.RESTART if restart else State.ZOMBIE
 
     def create_file(self, user, name, perms):
         """check validity of permissions, user rights, etc."""
@@ -46,7 +62,7 @@ class FileServer:
         print(msg)
 
 
-class ProcessServer:
+class ProcessServer(Server):
     def __init__(self):
         """actions for initializing the process server"""
         self.name = "ProcessServer"
@@ -60,16 +76,11 @@ class ProcessServer:
     def kill(self, restart=True):
         """actions for killing the process server"""
         print(f"Killing {self}")
-        self.state = (
-            State.RESTART if restart else State.ZOMBIE
-        )
+        self.state = State.RESTART if restart else State.ZOMBIE
 
     def create_process(self, user, name):
         """check user rights, generate PID, etc."""
-        msg = (
-            f"trying to create process '{name}' "
-            f"for user '{user}'"
-        )
+        msg = f"trying to create process '{name}' " f"for user '{user}'"
         print(msg)
 
 
