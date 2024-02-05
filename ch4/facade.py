@@ -1,4 +1,4 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 from enum import Enum
 
 State = Enum(
@@ -19,7 +19,7 @@ class File:
     pass
 
 
-class Server(metaclass=ABCMeta):
+class Server(ABC):
     @abstractmethod
     def __init__(self):
         pass
