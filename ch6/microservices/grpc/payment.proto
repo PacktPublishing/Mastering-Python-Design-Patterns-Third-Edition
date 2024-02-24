@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package payment;
+
+// The payment service definition.
+service PaymentService {
+  // Processes a payment
+  rpc ProcessPayment (PaymentRequest) returns (PaymentResponse) {}
+}
+
+// The request message containing payment details.
+message PaymentRequest {
+  string order_id = 1;
+  double amount = 2;
+  string currency = 3;
+  string user_id = 4;
+}
+
+// The response message containing the result of the payment process.
+message PaymentResponse {
+  string payment_id = 1;
+  string status = 2; // e.g., "SUCCESS", "FAILED"
+}
