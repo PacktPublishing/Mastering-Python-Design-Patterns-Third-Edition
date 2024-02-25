@@ -150,7 +150,7 @@ def main():
             cmd, dev, arg = event.parseString(t)
             cmd_str = " ".join(cmd)
             dev_str = " ".join(dev)
-            arg_str = " ".join(cmd)
+            arg_str = " ".join(arg)
             num_arg = 0
             try:
                 # extract the numeric part
