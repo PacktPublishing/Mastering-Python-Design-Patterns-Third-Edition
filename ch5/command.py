@@ -10,11 +10,15 @@ class RenameFile:
         self.dest = dest
 
     def execute(self):
-        logging.info(f"[renaming '{self.src}' to '{self.dest}']")
+        logging.info(
+            f"[renaming '{self.src}' to '{self.dest}']"
+        )
         os.rename(self.src, self.dest)
 
     def undo(self):
-        logging.info(f"[renaming '{self.dest}' back to '{self.src}']")
+        logging.info(
+            f"[renaming '{self.dest}' back to '{self.src}']"
+        )
         os.rename(self.dest, self.src)
 
 
@@ -25,7 +29,9 @@ class CreateFile:
 
     def execute(self):
         logging.info(f"[creating file '{self.path}']")
-        with open(self.path, mode="w", encoding="utf-8") as out_file:
+        with open(
+            self.path, "w", encoding="utf-8"
+        ) as out_file:
             out_file.write(self.txt)
 
     def undo(self):
@@ -39,7 +45,9 @@ class ReadFile:
 
     def execute(self):
         logging.info(f"[reading file '{self.path}']")
-        with open(self.path, mode="r", encoding="utf-8") as in_file:
+        with open(
+            self.path, "r", encoding="utf-8"
+        ) as in_file:
             print(in_file.read(), end="")
 
 

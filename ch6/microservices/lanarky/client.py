@@ -1,21 +1,19 @@
 import click
-
+import sys
 from lanarky.clients import StreamingClient
 
 
-@click.command()
-@click.option("--input", required=True)
-@click.option("--stream", is_flag=True)
-def main(input: str, stream: bool):
+args = sys.argv[1:]
+if len(args) == 1:
+    message = args[0]
+
     client = StreamingClient()
     for event in client.stream_response(
         "POST",
         "/chat",
-        params={"stream": str(stream).lower()},
-        json={"messages": [dict(role="user", content=input)]},
+        params={"stream": "false"},
+        json={"messages": [dict(role="user", content=message)]},
     ):
         print(f"{event.event}: {event.data}")
-
-
-if __name__ == "__main__":
-    main()
+else:
+    print("You need to pass a message!")
