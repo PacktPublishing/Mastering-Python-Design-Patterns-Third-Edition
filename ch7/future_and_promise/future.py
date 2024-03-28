@@ -5,7 +5,6 @@ def square(x):
     return x * x
 
 
-# Create a ThreadPoolExecutor
 with ThreadPoolExecutor() as executor:
     # Submit tasks and get Future objects
     future1 = executor.submit(square, 2)
