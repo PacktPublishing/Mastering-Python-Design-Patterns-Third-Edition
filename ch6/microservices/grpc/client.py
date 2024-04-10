@@ -13,6 +13,5 @@ with grpc.insecure_channel("localhost:50051") as chan:
             user_id="user456",
         )
     )
-    print(
-        f"Payment Service responded with status: {resp.status}"
-    )
+    print("Payment Service responded.")
+    print(f"Response status: {resp.status}")
