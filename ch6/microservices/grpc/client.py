@@ -14,5 +14,5 @@ with grpc.insecure_channel("localhost:50051") as chan:
         )
     )
     print(
-        f"Service responded with status: {resp.status}"
+        f"Payment Service responded with status: {resp.status}"
     )

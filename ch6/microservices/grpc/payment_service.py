@@ -1,4 +1,4 @@
-from concurrent import futures
+from concurrent.futures import ThreadPoolExecutor
 import grpc
 import payment_pb2
 import payment_pb2_grpc
@@ -11,7 +11,7 @@ class PaymentServiceImpl(payment_pb2_grpc.PaymentServiceServicer):
 
 def main():
     print("Payment Processing Service ready!")
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(ThreadPoolExecutor(max_workers=10))
     payment_pb2_grpc.add_PaymentServiceServicer_to_server(PaymentServiceImpl(), server)
     server.add_insecure_port("[::]:50051")
     server.start()
