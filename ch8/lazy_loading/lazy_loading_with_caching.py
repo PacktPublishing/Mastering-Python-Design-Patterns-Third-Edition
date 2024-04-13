@@ -3,7 +3,7 @@ from functools import lru_cache
 
 
 def recursive_factorial(n):
-    """Recursively calculate factorial (expensive for large n)"""
+    """Calculate factorial (expensive for large n)"""
     if n == 1:
         return 1
     else:
@@ -18,7 +18,6 @@ def cached_factorial(n):
 def main():
     # Testing the performance
 
-    # Choose a relatively large number for demonstration
     n = 20
 
     # Without caching
@@ -29,7 +28,9 @@ def main():
     # With caching
     start_time = time.time()
     print(f"Cached factorial of {n}: {cached_factorial(n)}")
-    print(f"First calculation time with caching: {time.time() - start_time} seconds.")
+    print(f"Calculation time with caching: {time.time() - start_time} seconds.")
+
+    print(f"Cache statistics:\n  {cached_factorial.cache_info()}")
 
 
 if __name__ == "__main__":
