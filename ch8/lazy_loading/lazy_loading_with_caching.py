@@ -1,4 +1,5 @@
 import time
+from datetime import timedelta
 from functools import lru_cache
 
 
@@ -17,20 +18,25 @@ def cached_factorial(n):
 
 def main():
     # Testing the performance
-
     n = 20
 
     # Without caching
     start_time = time.time()
     print(f"Recursive factorial of {n}: {recursive_factorial(n)}")
-    print(f"Calculation time without caching: {time.time() - start_time} seconds.")
+    duration = timedelta(time.time() - start_time)
+    print(f"Calculation time without caching: {duration}")
 
     # With caching
     start_time = time.time()
     print(f"Cached factorial of {n}: {cached_factorial(n)}")
-    print(f"Calculation time with caching: {time.time() - start_time} seconds.")
+    duration = timedelta(time.time() - start_time)
+    print(f"Calculation time with caching: {duration}")
 
-    print(f"Cache statistics:\n  {cached_factorial.cache_info()}")
+    # Repeating the calculation to demonstrate caching benefits
+    start_time = time.time()
+    print(f"Cached factorial of {n}, repeated: {cached_factorial(n)}")
+    duration = timedelta(time.time() - start_time)
+    print(f"Second calculation time with caching: {duration}")
 
 
 if __name__ == "__main__":
