@@ -1,5 +1,4 @@
 import sqlite3
-import sys
 from pathlib import Path
 
 import redis
@@ -19,7 +18,7 @@ def get_quote(quote_id: str) -> str:
             with sqlite3.connect(DB_PATH) as db:
                 cursor = db.cursor()
                 res = cursor.execute(
-                    f"SELECT text FROM quotes WHERE id = {quote_id}"
+                    f"SELECT text FROM quotes WHERE id = {quote_id}"  # nosec
                 ).fetchone()
                 if not res:
                     return "There was no quote stored matching that id!"
@@ -28,16 +27,20 @@ def get_quote(quote_id: str) -> str:
                 out.append(f"Got '{quote}' FROM DB")
         except Exception as e:
             print(e)
+            quote = ""
 
         # Add to the cache
-        key = f"{CACHE_KEY_PREFIX}.{quote_id}"
-        cache.set(key, quote, ex=60)
-        out.append(f"Added TO CACHE, with key '{key}'")
+        if quote:
+            key = f"{CACHE_KEY_PREFIX}.{quote_id}"
+            cache.set(key, quote, ex=60)
+            out.append(f"Added TO CACHE, with key '{key}'")
     else:
         out.append(f"Got '{quote}' FROM CACHE")
 
     if out:
         return " - ".join(out)
+    else:
+        return ""
 
 
 def main():

@@ -1,8 +1,4 @@
-# pip install redis
-# pip install faker
-
 import sqlite3
-import sys
 from pathlib import Path
 from random import randint
 
@@ -38,7 +34,7 @@ def add_quotes(quotes_list):
             cursor = db.cursor()
 
             for quote_text in quotes_list:
-                quote_id = randint(1, 100)
+                quote_id = randint(1, 100)  # nosec
                 quote = (quote_id, quote_text)
 
                 cursor.execute(
