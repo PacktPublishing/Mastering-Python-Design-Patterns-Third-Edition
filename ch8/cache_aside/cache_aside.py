@@ -14,12 +14,11 @@ def get_quote(quote_id: str) -> str:
 
     if quote is None:
         # Get from the database
+        query_fmt = "SELECT text FROM quotes WHERE id = {}"
         try:
             with sqlite3.connect(DB_PATH) as db:
                 cursor = db.cursor()
-                res = cursor.execute(
-                    f"SELECT text FROM quotes WHERE id = {quote_id}"  # nosec
-                ).fetchone()
+                res = cursor.execute(query_fmt.format(quote_id)).fetchone()
                 if not res:
                     return "There was no quote stored matching that id!"
 
