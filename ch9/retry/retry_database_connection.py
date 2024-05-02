@@ -23,7 +23,7 @@ def retry(attempts):
 
 @retry(attempts=3)
 def connect_to_database():
-    if random.randint(0, 1):
+    if random.randint(0, 1):  # nosec
         raise Exception("Temporary Database Error")
     return "Connected to Database"
 
