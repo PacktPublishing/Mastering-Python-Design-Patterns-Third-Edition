@@ -1,4 +1,6 @@
-# our version of a script provided in https://github.com/veltra/pybreaker-playground
+"""
+Our version of a script provided in https://github.com/veltra/pybreaker-playground.
+"""
 
 import pybreaker
 from datetime import datetime
