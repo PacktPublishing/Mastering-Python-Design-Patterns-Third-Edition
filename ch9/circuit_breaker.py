@@ -11,7 +11,7 @@ breaker = pybreaker.CircuitBreaker(fail_max=2, reset_timeout=5)
 
 @breaker
 def fragile_function():
-    if not random.choice([True, False]):
+    if not random.choice([True, False]):  # nosec
         print(" / OK", end="")
     else:
         print(" / FAIL", end="")
