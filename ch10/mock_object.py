@@ -13,19 +13,19 @@ class Logger:
 
 class TestLogger(unittest.TestCase):
     def test_log(self):
-        message = "Hello, logging world!"
+        msg = "Hello, logging world!"
 
-        mocked_open = mock_open()
+        m_open = mock_open()
 
-        with patch("builtins.open", mocked_open):
-            logger = Logger("dummy_path.log")
-            logger.log(message)
+        with patch("builtins.open", m_open):
+            logger = Logger("dummy.log")
+            logger.log(msg)
 
             # Check that open was called correctly
-            mocked_open.assert_called_once_with("dummy_path.log", "a")
+            m_open.assert_called_once_with("dummy.log", "a")
 
             # Check that the write method was called with the correct message
-            mocked_open().write.assert_called_once_with(f"{message}\n")
+            m_open().write.assert_called_once_with(f"{msg}\n")
 
 
 if __name__ == "__main__":
