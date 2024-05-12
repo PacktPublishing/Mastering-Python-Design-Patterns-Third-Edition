@@ -21,11 +21,12 @@ class TestLogger(unittest.TestCase):
             logger = Logger("dummy.log")
             logger.log(msg)
 
-            # Check that open was called correctly
-            m_open.assert_called_once_with("dummy.log", "a")
-
-            # Check that the write method was called with the correct message
-            m_open().write.assert_called_once_with(f"{msg}\n")
+            m_open.assert_called_once_with(
+                "dummy.log", "a"
+            )
+            m_open().write.assert_called_once_with(
+                f"{msg}\n"
+            )
 
 
 if __name__ == "__main__":
