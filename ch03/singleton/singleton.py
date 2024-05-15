@@ -26,14 +26,16 @@ class URLFetcher(metaclass=SingletonType):
 
 
 def main():
-    print(URLFetcher() is URLFetcher())
-
-    fetcher = URLFetcher()
-    for url in [
+    my_urls = [
         "http://python.org",
         "https://planetpython.org/",
         "https://www.djangoproject.com/",
-    ]:
+    ]
+
+    print(URLFetcher() is URLFetcher())
+
+    fetcher = URLFetcher()
+    for url in my_urls:
         fetcher.fetch(url)
 
     print(f"Done URLs: {fetcher.urls}")
