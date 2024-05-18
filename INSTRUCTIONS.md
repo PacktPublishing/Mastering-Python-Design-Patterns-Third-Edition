@@ -33,6 +33,3 @@ This improves readability of the code snippets inserted in the book.
 
 ## The `if __name__ == "__main__"` trick
 
-
-
-
