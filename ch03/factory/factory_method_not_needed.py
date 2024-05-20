@@ -25,8 +25,7 @@ class XMLDataExtractor:
 
 
 def extract(case: str):
-    pathname = Path(__file__)
-    dir_path = pathname.parent
+    dir_path = Path(__file__).parent
 
     if case == "json":
         path = dir_path / Path("movies.json")
