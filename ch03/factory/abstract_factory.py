@@ -86,7 +86,7 @@ def validate_age(name):
         age_input = input(f"Welcome {name}. How old are you? ")
         age = int(age_input)
     except ValueError:
-        print(f"Age {age} is invalid, please try again...")
+        print(f"Age '{age_input}' is invalid, please try again...")
         return False, age
     return True, age
 
