@@ -59,10 +59,10 @@ is a seasoned Python expert with over two decades of experience in the technolog
 is a software architect living in the Netherlands. He is not dogmatic about particular programming languages and tools; his principle is that the right tool should be used for the right job. One of his favorite tools is Python because he finds it very productive. Sakis was also the technical reviewer of Mastering Object-oriented Python and Learning Python Design Patterns, published by Packt Publishing.
 
 ## Other Books by the Authors
-* Learn Type-Driven Development [[Packt]](https://www.packtpub.com/product/learn-type-driven-development/9781788838016) [[Amazon]](https://a.co/d/3uCcutx)
+* Learn Type-Driven Development [[Packt]](https://www.packtpub.com/product/learn-type-driven-development/9781788838016) [[Amazon]](https://a.co/d/2pEEpgC)
 * Python: Master the Art of Design Patterns [[Packt]](https://www.packtpub.com/product/python-master-the-art-of-design-patterns/9781787125186) [[Amazon]](https://a.co/d/fOo34ed)
 * Advanced Python Programming [[Packt]](https://www.packtpub.com/product/advanced-python-programming/9781838551216) [[Amazon]](https://a.co/d/0XJQ6Gz)
-* Mastering Python Design Patterns - Second Edition [[Packt]](https://www.packtpub.com/product/mastering-python-design-patterns-second-edition/9781788837484) [[Amazon]](https://a.co/d/hAanMel)
+* Mastering Python Design Patterns - Second Edition [[Packt]](https://www.packtpub.com/product/mastering-python-design-patterns-second-edition/9781788837484) [[Amazon]](https://a.co/d/1Bt31NY)
 * Mastering Python Design Patterns - First Edition [[Packt]](https://www.packtpub.com/product/mastering-python-design-patterns/9781783989324) [[Amazon]](https://a.co/d/5jPlODO)
 
 
